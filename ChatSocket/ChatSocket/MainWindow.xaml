@@ -1,0 +1,22 @@
+﻿<Window x:Class="ChatSocket.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ChatSocket"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <ListBox x:Name="ListMex" Margin="67,41,567,41"/>
+        <TextBox x:Name="TxtIP" HorizontalAlignment="Left" Margin="454,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="206" Height="38"/>
+        <TextBox x:Name="TxtPort" HorizontalAlignment="Left" Margin="454,116,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="206" Height="45"/>
+        <TextBox x:Name="TxtMess" HorizontalAlignment="Left" Margin="454,199,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="206" Height="45"/>
+        <Button x:Name="BtnInvia" Content="Invia" Margin="494,284,180,65" Click="BtnInvia_Click"/>
+        <Label Content="Inserisci l'indirizzo IP" HorizontalAlignment="Left" Margin="454,15,0,0" VerticalAlignment="Top"/>
+        <Label Content="Inserisci la Porta&#xD;&#xA;" HorizontalAlignment="Left" Margin="454,90,0,0" VerticalAlignment="Top"/>
+        <Label Content="Inserisci il messaggio&#xD;&#xA;" HorizontalAlignment="Left" Margin="454,171,0,0" VerticalAlignment="Top" Height="28"/>
+        <Label x:Name="LblPorta" Content="" HorizontalAlignment="Left" Margin="685,46,0,0" VerticalAlignment="Top" Height="58" Width="115"/>
+        <Label Content="Porta" HorizontalAlignment="Left" Margin="685,10,0,0" VerticalAlignment="Top" Height="31" Width="115"/>
+
+    </Grid>
+</Window>
