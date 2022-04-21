@@ -65,9 +65,10 @@ namespace ChatSocket
                 nBytes = socket.ReceiveFrom(buffer, ref remoteEndPoint);//prende l'ip e la porta e li mette nell'endpoint
 
                 string from = ((IPEndPoint)remoteEndPoint).Address.ToString(); //recupero l'ip
+                string from2 = ((IPEndPoint)remoteEndPoint).Port.ToString();
                 string messaggio = Encoding.UTF8.GetString(buffer, 0, nBytes); // creo il messaggio dai bytes
 
-                ListMex.Items.Add(from + ": " + messaggio);
+                ListMex.Items.Add(from + ":" + from2 + ": " + messaggio);
             }
         }
 
@@ -80,11 +81,28 @@ namespace ChatSocket
                 byte[] messaggio = Encoding.UTF8.GetBytes(TxtMess.Text);//Prendo il messaggio
 
                 socket.SendTo(messaggio, remote_endpoint);
+
+                ListMex.Items.Add("TU: " + TxtMess.Text);
             } 
             catch
             {
                 MessageBox.Show("Hai inserito un indirizzo ip o una porta incompatibili");
             }
+        }
+
+        private void ListMex_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string[] IPePorta = new string[5];
+            IPePorta=ListMex.SelectedItem.ToString().Split(":");
+
+            if (IPePorta[0] != "TU")
+            {
+                TxtIP.Text = IPePorta[0];
+                TxtPort.Text = IPePorta[1];
+            }
+            
+
+
         }
     }
 }
