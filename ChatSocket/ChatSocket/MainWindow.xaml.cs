@@ -73,11 +73,18 @@ namespace ChatSocket
 
         private void BtnInvia_Click(object sender, RoutedEventArgs e)
         {
-            IPAddress remote_adress = IPAddress.Parse(TxtIP.Text);//prendo l'ip
-            IPEndPoint remote_endpoint = new IPEndPoint(remote_adress, int.Parse(TxtPort.Text));//creo l'endpoint(destinatario)
-            byte[] messaggio = Encoding.UTF8.GetBytes(TxtMess.Text);//Prendo il messaggio
+            try
+            {
+                IPAddress remote_adress = IPAddress.Parse(TxtIP.Text);//prendo l'ip
+                IPEndPoint remote_endpoint = new IPEndPoint(remote_adress, int.Parse(TxtPort.Text));//creo l'endpoint(destinatario)
+                byte[] messaggio = Encoding.UTF8.GetBytes(TxtMess.Text);//Prendo il messaggio
 
-            socket.SendTo(messaggio, remote_endpoint);
+                socket.SendTo(messaggio, remote_endpoint);
+            } 
+            catch
+            {
+                MessageBox.Show("Hai inserito un indirizzo ip o una porta incompatibili");
+            }
         }
     }
 }
