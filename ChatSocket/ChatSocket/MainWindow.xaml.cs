@@ -43,11 +43,11 @@ namespace ChatSocket
             DispatcherTimer dTimer = null; //Creiamo il Timer
 
             IPAddress local_address = IPAddress.Any; //Any Prendo l'ip dal sistema operativo
-            IPEndPoint local_endpoint = new IPEndPoint(local_address.MapToIPv4(),porta); //maptoipv4 lo mappa in ipv4 - 65000 è la porta
+            IPEndPoint local_endpoint = new IPEndPoint(local_address.MapToIPv4(),porta); //maptoipv4  mappa l 'indirizzo in ipv4 
 
             socket.Bind(local_endpoint);//Unisce il socket all'endpoint
 
-            dTimer = new DispatcherTimer(); //creo l'oggetto
+            dTimer = new DispatcherTimer(); //creo l'oggetto timer 
             dTimer.Tick += new EventHandler(aggiornamento_dTimer); // l'evento che parte quando scade il tick;
             dTimer.Interval= new TimeSpan(0,0,0,0,250);//ogni quanto fare il tick
             dTimer.Start();//parte il timer
@@ -72,10 +72,10 @@ namespace ChatSocket
                 nBytes = socket.ReceiveFrom(buffer, ref remoteEndPoint);//prende l'ip e la porta e li mette nell'endpoint
 
                 string from = ((IPEndPoint)remoteEndPoint).Address.ToString(); //recupero l'ip
-                string from2 = ((IPEndPoint)remoteEndPoint).Port.ToString();
+                string from2 = ((IPEndPoint)remoteEndPoint).Port.ToString();    //recupero la porta
                 string messaggio = Encoding.UTF8.GetString(buffer, 0, nBytes); // creo il messaggio dai bytes
 
-                ListMex.Items.Add(from + ":" + from2 + ": " + messaggio);
+                ListMex.Items.Add(from + ":" + from2 + ": " + messaggio); //Aggiungo alla chat il mittente identificato da indirizzo e porta
             }
         }
 
@@ -87,12 +87,13 @@ namespace ChatSocket
                 IPEndPoint remote_endpoint = new IPEndPoint(remote_adress, int.Parse(TxtPort.Text));//creo l'endpoint(destinatario)
                 byte[] messaggio = Encoding.UTF8.GetBytes(TxtMess.Text);//Prendo il messaggio
 
-                socket.SendTo(messaggio, remote_endpoint);
+                socket.SendTo(messaggio, remote_endpoint);//Invio il  messaggio
 
-                ListMex.Items.Add("TU: " + TxtMess.Text);
+                ListMex.Items.Add("TU: " + TxtMess.Text); //così posso vedere il messaggio che ho invitato come se fosse una vera chat
 
-                contatti.Add(remote_adress + "-" + TxtPort.Text);
-                using (StreamWriter writer = new StreamWriter("contatti.txt"))
+                contatti.Add(remote_adress + "-" + TxtPort.Text); //aggiungo il contatto alla lista di contatti del registro
+
+                using (StreamWriter writer = new StreamWriter("contatti.txt")) //riscrivo il file con il contatto nuovo
                 {
                     for (int i = 0; i < contatti.Count; i++)
                     {
@@ -110,6 +111,8 @@ namespace ChatSocket
 
         private void ListMex_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            //serve per far si che cliccando il messaggio vengono compilate automaticamente le textbox con i dati del mittente per potergli rispondere
+
             string[] IPePorta = new string[3];
             IPePorta=ListMex.SelectedItem.ToString().Split(":");
 
@@ -124,8 +127,10 @@ namespace ChatSocket
 
         private void LeggiContattiRecenti()
         {
+            //Leggo il file del registro dei contatti
+             
             string riga;
-             contatti = new List<string>();
+            contatti = new List<string>();
 
             using (StreamReader sr = new StreamReader("contatti.txt"))
             {
@@ -139,8 +144,8 @@ namespace ChatSocket
 
         private void ListRubrica_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
-                if (ListRubrica.SelectedIndex!= -1)
+            //serve per far si che cliccando il contatto in rubrica possa scrivergli direttamente compilando automaticamente le textbox
+            if (ListRubrica.SelectedIndex!= -1)
                 {
                     string[] IPePorta = new string[3];
                     IPePorta = ListRubrica.SelectedItem.ToString().Split("-");
@@ -153,6 +158,7 @@ namespace ChatSocket
 
         public void VediLista()
         {
+            //Vedo la lista del registro
             ListRubrica.Items.Clear();
             for (int i = 0; i < contatti.Count; i++)
             {
