@@ -7,7 +7,17 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <ListBox x:Name="ListMex" Margin="67,41,567,41"/>
+        <Image Margin="1,0,1,-2" Stretch="Fill" Source="pack://siteoforigin:,,,/Sfondo.jpg" RenderTransformOrigin="0.5,0.5">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-0.134"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <ListBox x:Name="ListMex" Margin="67,41,389,41"/>
         <TextBox x:Name="TxtIP" HorizontalAlignment="Left" Margin="454,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="206" Height="38"/>
         <TextBox x:Name="TxtPort" HorizontalAlignment="Left" Margin="454,116,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="206" Height="45"/>
         <TextBox x:Name="TxtMess" HorizontalAlignment="Left" Margin="454,199,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="206" Height="45"/>
@@ -15,8 +25,9 @@
         <Label Content="Inserisci l'indirizzo IP" HorizontalAlignment="Left" Margin="454,15,0,0" VerticalAlignment="Top"/>
         <Label Content="Inserisci la Porta&#xD;&#xA;" HorizontalAlignment="Left" Margin="454,90,0,0" VerticalAlignment="Top"/>
         <Label Content="Inserisci il messaggio&#xD;&#xA;" HorizontalAlignment="Left" Margin="454,171,0,0" VerticalAlignment="Top" Height="28"/>
-        <Label x:Name="LblPorta" Content="" HorizontalAlignment="Left" Margin="685,46,0,0" VerticalAlignment="Top" Height="58" Width="115"/>
-        <Label Content="Porta" HorizontalAlignment="Left" Margin="685,10,0,0" VerticalAlignment="Top" Height="31" Width="115"/>
+        <Label x:Name="LblPorta" Content="" HorizontalAlignment="Left" Margin="675,46,0,0" VerticalAlignment="Top" Height="58" Width="115"/>
+        <Label Content="Porta Utilizzata" HorizontalAlignment="Left" Margin="685,10,0,0" VerticalAlignment="Top" Height="31" Width="115"/>
+
 
     </Grid>
 </Window>

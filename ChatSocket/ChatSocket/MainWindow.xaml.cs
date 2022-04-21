@@ -46,7 +46,7 @@ namespace ChatSocket
             dTimer.Start();//parte il timer
 
 
-            LblPorta.Content = "la porta è " + porta;
+            LblPorta.Content = " " + porta;
 
 
 
