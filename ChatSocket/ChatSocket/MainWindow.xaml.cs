@@ -18,6 +18,7 @@ using System.Windows.Shapes;
 using System.Net.Sockets;
 using System.Net;
 using System.Windows.Threading;
+using System.IO;
 
 namespace ChatSocket
 {
@@ -28,10 +29,16 @@ namespace ChatSocket
     {
         Socket socket = null;//INIZIALIZIAMO IL SOCKET
         const int porta= 65500;
+        List<string> contatti;
 
         public MainWindow()
         {
             InitializeComponent();
+
+            LeggiContattiRecenti();
+
+            VediLista();
+
             socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);//Internetwork=IPV4 , Dgram=UDP
             DispatcherTimer dTimer = null; //Creiamo il Timer
 
@@ -83,6 +90,17 @@ namespace ChatSocket
                 socket.SendTo(messaggio, remote_endpoint);
 
                 ListMex.Items.Add("TU: " + TxtMess.Text);
+
+                contatti.Add(remote_adress + "-" + TxtPort.Text);
+                using (StreamWriter writer = new StreamWriter("contatti.txt"))
+                {
+                    for (int i = 0; i < contatti.Count; i++)
+                    {
+                        writer.WriteLine(contatti[i]);
+                    }
+                }
+                LeggiContattiRecenti();
+                VediLista();
             } 
             catch
             {
@@ -99,6 +117,46 @@ namespace ChatSocket
             {
                 TxtIP.Text = IPePorta[0];
                 TxtPort.Text = IPePorta[1];
+                contatti.Add(IPePorta[0] + "-" + IPePorta[1]);
+            }
+        }
+
+
+        private void LeggiContattiRecenti()
+        {
+            string riga;
+             contatti = new List<string>();
+
+            using (StreamReader sr = new StreamReader("contatti.txt"))
+            {
+                while (sr.EndOfStream == false)
+                {
+                    riga = sr.ReadLine();
+                    contatti.Add(riga);
+                }
+            }
+        }
+
+        private void ListRubrica_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+                if (ListRubrica.SelectedIndex!= -1)
+                {
+                    string[] IPePorta = new string[3];
+                    IPePorta = ListRubrica.SelectedItem.ToString().Split("-");
+                    TxtIP.Text = IPePorta[0];
+                    TxtPort.Text = IPePorta[1];
+                }
+            
+        }
+
+
+        public void VediLista()
+        {
+            ListRubrica.Items.Clear();
+            for (int i = 0; i < contatti.Count; i++)
+            {
+                ListRubrica.Items.Add(contatti[i]);
             }
         }
     }

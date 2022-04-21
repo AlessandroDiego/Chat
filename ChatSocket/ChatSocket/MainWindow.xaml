@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Image Margin="1,0,1,-2" Stretch="Fill" Source="pack://siteoforigin:,,,/Sfondo.jpg" RenderTransformOrigin="0.5,0.5">
+        <Image Margin="1,0,-6,-7" Stretch="Fill" Source="pack://siteoforigin:,,,/Sfondo.jpg" RenderTransformOrigin="0.5,0.5">
             <Image.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -17,16 +17,19 @@
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
-        <ListBox x:Name="ListMex" Margin="67,41,389,41" SelectionChanged="ListMex_SelectionChanged"/>
-        <TextBox x:Name="TxtIP" HorizontalAlignment="Left" Margin="454,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="206" Height="38"/>
-        <TextBox x:Name="TxtPort" HorizontalAlignment="Left" Margin="454,116,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="206" Height="45"/>
-        <TextBox x:Name="TxtMess" HorizontalAlignment="Left" Margin="454,199,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="206" Height="45"/>
-        <Button x:Name="BtnInvia" Content="Invia" Margin="494,284,180,65" Click="BtnInvia_Click"/>
-        <Label Content="Inserisci l'indirizzo IP" HorizontalAlignment="Left" Margin="454,15,0,0" VerticalAlignment="Top"/>
-        <Label Content="Inserisci la Porta&#xD;&#xA;" HorizontalAlignment="Left" Margin="454,90,0,0" VerticalAlignment="Top"/>
-        <Label Content="Inserisci il messaggio&#xD;&#xA;" HorizontalAlignment="Left" Margin="454,171,0,0" VerticalAlignment="Top" Height="28"/>
-        <Label x:Name="LblPorta" Content="" HorizontalAlignment="Left" Margin="675,46,0,0" VerticalAlignment="Top" Height="58" Width="115"/>
-        <Label Content="Porta Utilizzata" HorizontalAlignment="Left" Margin="685,10,0,0" VerticalAlignment="Top" Height="31" Width="115"/>
+        <ListBox x:Name="ListMex" Margin="10,111,481,21" SelectionChanged="ListMex_SelectionChanged"/>
+        <TextBox x:Name="TxtIP" HorizontalAlignment="Left" Margin="349,43,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="206" Height="38"/>
+        <TextBox x:Name="TxtPort" HorizontalAlignment="Left" Margin="349,118,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="206" Height="45"/>
+        <TextBox x:Name="TxtMess" HorizontalAlignment="Left" Margin="349,201,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="206" Height="45"/>
+        <Button x:Name="BtnInvia" Content="Invia" Margin="389,286,285,63" Click="BtnInvia_Click"/>
+        <Label Content="Inserisci l'indirizzo IP" HorizontalAlignment="Left" Margin="349,17,0,0" VerticalAlignment="Top"/>
+        <Label Content="Inserisci la Porta&#xD;&#xA;" HorizontalAlignment="Left" Margin="349,92,0,0" VerticalAlignment="Top"/>
+        <Label Content="Inserisci il messaggio&#xD;&#xA;" HorizontalAlignment="Left" Margin="349,173,0,0" VerticalAlignment="Top" Height="28"/>
+        <Label x:Name="LblPorta" Content="" HorizontalAlignment="Left" Margin="130,19,0,0" VerticalAlignment="Top" Height="31" Width="115"/>
+        <Label Content="Porta Utilizzata" HorizontalAlignment="Left" Margin="10,19,0,0" VerticalAlignment="Top" Height="31" Width="115"/>
+        <ListBox x:Name="ListRubrica" Margin="563,49,10,21" SelectionChanged="ListRubrica_SelectionChanged"/>
+        <Label Content="Cronologia persone contattate(Rubrica)" Margin="563,17,10,385" RenderTransformOrigin="0.523,0.857"/>
+        <Label Content="CHAT" Margin="12,49,481,321"/>
 
 
     </Grid>
