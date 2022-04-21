@@ -92,7 +92,7 @@ namespace ChatSocket
 
         private void ListMex_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            string[] IPePorta = new string[5];
+            string[] IPePorta = new string[3];
             IPePorta=ListMex.SelectedItem.ToString().Split(":");
 
             if (IPePorta[0] != "TU")
@@ -100,9 +100,6 @@ namespace ChatSocket
                 TxtIP.Text = IPePorta[0];
                 TxtPort.Text = IPePorta[1];
             }
-            
-
-
         }
     }
 }
